@@ -6,16 +6,26 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body>
+<body class="font-poppins">
     <div class="flex justify-between p-16">
-        <p>tempo</p>
-        <p>configuracao</p>
+        <div class="flex items-center">
+            <img src="/img/clima.png" alt="" width="45px" class="mr-2">
+            <p>tempo</p>
+        </div>
+        
+        <div class="flex items-center">
+            <img src="/img/simbolo-de-interface-da-roda-dentada-de-configuracao.png" alt="" width="45px" class="mr-2">
+            <p>configuracao</p>
+        </div>
     </div>
 
     <div class="flex justify-center pt-64">
-        <div class="flex flex-col">
-            <p>dia, ano</p>
-            <p>horario</p>
+        <div class="flex">
+            <span><%= hours %></span>
+            <span>:</span>
+            <span><%= minutes %></span>
+            <span>:</span>
+            <span><%= seconds %></span>
         </div>
     </div>
 </body>

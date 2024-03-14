@@ -492,11 +492,20 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.m-2 {
+  margin: 0.5rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
+}
 .flex {
   display: flex;
 }
 .flex-col {
   flex-direction: column;
+}
+.items-center {
+  align-items: center;
 }
 .justify-center {
   justify-content: center;
@@ -507,6 +516,24 @@ video {
 .p-16 {
   padding: 4rem;
 }
+.p-2 {
+  padding: 0.5rem;
+}
 .pt-64 {
   padding-top: 16rem;
 }
+.pr-2 {
+  padding-right: 0.5rem;
+}
+.font-sans {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+.font-poppins {
+  font-family: Poppins, sans-serif;
+}
+.font-bold {
+  font-weight: 700;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+

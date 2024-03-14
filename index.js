@@ -13,10 +13,40 @@ app.set('views', path.join(__dirname, 'views'))
 //definindo arquivos publicos e estaticos
 app.use(express.static(path.join(__dirname, 'public')))
 
+//Relógio
+let time = {
+    hoursElement: '',
+    minutesElement: '',
+    secondsElement: ''
+};
+
+function newTime() {
+    const date = new Date()
+
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+    const seconds = date.getSeconds()
+
+    time.hoursElement = fixTime(hours)
+    time.minutesElement = fixTime(minutes)
+    time.secondsElement = fixTime(seconds)
+    
+}
+
+function fixTime(time){
+    return time < 10 ? '0'+time : time
+}
+
+newTime()
+setInterval(newTime, 1000)
+
 //ROTAS
 app.get('/', (req, res) => {
     res.render('principal', {
-        title: 'Digital Clock'
+        title: 'Digital Clock',
+        hours: time.hoursElement,
+        minutes: time.minutesElement,
+        seconds: time.secondsElement,
     })
 })
 
