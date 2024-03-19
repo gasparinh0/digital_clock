@@ -6,7 +6,7 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="font-poppins">
+<body class="font-poppins bg-[#312e33]">
     <div class="flex justify-between p-16">
         <div class="flex items-center">
             <img src="/img/clima.png" alt="" width="45px" class="mr-2">
@@ -19,14 +19,38 @@
         </div>
     </div>
 
-    <div class="flex justify-center pt-64">
-        <div class="flex">
-            <span><%= hours %></span>
+    <div class="flex justify-center pt-64 flex-col items-center">
+        <p>Dia <%= day %> de <%= month %> de <%= year %></p>
+        <div class="flex text-9xl ">
+            <span id="hours"><%= hours %></span>
             <span>:</span>
-            <span><%= minutes %></span>
+            <span id="minutes"><%= minutes %></span>
             <span>:</span>
-            <span><%= seconds %></span>
+            <span id="seconds"><%= seconds %></span>
         </div>
     </div>
+    
+
+
+
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+    
+            document.getElementById("hours").innerText = fixTime(hours);
+            document.getElementById("minutes").innerText = fixTime(minutes);
+            document.getElementById("seconds").innerText = fixTime(seconds);
+        }
+    
+        function fixTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+    
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
 </body>
 </html>

@@ -492,9 +492,6 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
-.m-2 {
-  margin: 0.5rem;
-}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -513,26 +510,38 @@ video {
 .justify-between {
   justify-content: space-between;
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+.bg-red-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
+}
+.bg-gray-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+}
+.bg-\[\#312e33\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 46 51 / var(--tw-bg-opacity));
+}
 .p-16 {
   padding: 4rem;
-}
-.p-2 {
-  padding: 0.5rem;
 }
 .pt-64 {
   padding-top: 16rem;
 }
-.pr-2 {
-  padding-right: 0.5rem;
-}
-.font-sans {
-  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
 .font-poppins {
   font-family: Poppins, sans-serif;
 }
-.font-bold {
-  font-weight: 700;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')

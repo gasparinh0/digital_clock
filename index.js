@@ -17,8 +17,35 @@ app.use(express.static(path.join(__dirname, 'public')))
 let time = {
     hoursElement: '',
     minutesElement: '',
-    secondsElement: ''
+    secondsElement: '',
 };
+
+let dayObj = {
+    dayElement: '',
+    monthElement: '',
+    yearElement: '',
+}
+
+const monthNames = [
+    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+];
+
+function getMonthName(monthNumber) {
+    return monthNames[monthNumber];
+}
+
+function newDay() {
+    const date = new Date();
+
+    const day = date.getDate();
+    const month = getMonthName(date.getMonth()); 
+    const year = date.getFullYear();
+
+    dayObj.dayElement = day;
+    dayObj.monthElement = month;
+    dayObj.yearElement = year;
+}
 
 function newTime() {
     const date = new Date()
@@ -30,7 +57,6 @@ function newTime() {
     time.hoursElement = fixTime(hours)
     time.minutesElement = fixTime(minutes)
     time.secondsElement = fixTime(seconds)
-    
 }
 
 function fixTime(time){
@@ -38,7 +64,19 @@ function fixTime(time){
 }
 
 newTime()
+newDay()
 setInterval(newTime, 1000)
+
+//API de clima
+const key = "d99c13f054c406019f175a3bfa7f8d70"
+
+async function weatherInfo() {
+    const weatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=São Paulo&appid=${key}`).then( response => response.json() );
+    console.log(weatherData)
+}
+
+weatherInfo()
+
 
 //ROTAS
 app.get('/', (req, res) => {
@@ -47,6 +85,9 @@ app.get('/', (req, res) => {
         hours: time.hoursElement,
         minutes: time.minutesElement,
         seconds: time.secondsElement,
+        day: dayObj.dayElement,
+        month: dayObj.monthElement,
+        year: dayObj.yearElement,
     })
 })
 
