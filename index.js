@@ -13,28 +13,25 @@ app.set('views', path.join(__dirname, 'views'))
 //definindo arquivos publicos e estaticos
 app.use(express.static(path.join(__dirname, 'public')))
 
-//Relógio
-let time = {
-    hoursElement: '',
-    minutesElement: '',
-    secondsElement: '',
-};
-
+//Relógio - datas
 let dayObj = {
     dayElement: '',
     monthElement: '',
     yearElement: '',
 }
 
+//Array de nomes de meses para melhorar a visualização da informação que é passada pela rota
 const monthNames = [
     "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
     "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
 ];
 
+//Colocando os nomes em uma função
 function getMonthName(monthNumber) {
     return monthNames[monthNumber];
 }
 
+//Função para receber os dia, mês e ano
 function newDay() {
     const date = new Date();
 
@@ -47,47 +44,44 @@ function newDay() {
     dayObj.yearElement = year;
 }
 
-function newTime() {
-    const date = new Date()
-
-    const hours = date.getHours()
-    const minutes = date.getMinutes()
-    const seconds = date.getSeconds()
-
-    time.hoursElement = fixTime(hours)
-    time.minutesElement = fixTime(minutes)
-    time.secondsElement = fixTime(seconds)
-}
-
-function fixTime(time){
-    return time < 10 ? '0'+time : time
-}
-
-newTime()
 newDay()
-setInterval(newTime, 1000)
 
 //API de clima
 const key = "d99c13f054c406019f175a3bfa7f8d70"
 
+//Definindo variáveis que vão receber as informações
+let weather = {
+    nameElement: '',
+    tempElement: '',
+    descriptionElement: '',
+    imgElement: '',
+};
+
+//Função para receber os dados do weather API
 async function weatherInfo() {
-    const weatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=São Paulo&appid=${key}`).then( response => response.json() );
-    console.log(weatherData)
+    const weatherData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=São Paulo&appid=${key}&lang=pt_br&units=metric`).then(response => response.json());
+    
+    weather.nameElement = weatherData.name;
+    weather.tempElement = Math.floor(weatherData.main.temp) + '°C';
+    weather.descriptionElement = weatherData.weather[0].description;
+    weather.imgElement = `https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`;
 }
 
-weatherInfo()
-
+weatherInfo();
 
 //ROTAS
 app.get('/', (req, res) => {
     res.render('principal', {
         title: 'Digital Clock',
-        hours: time.hoursElement,
-        minutes: time.minutesElement,
-        seconds: time.secondsElement,
+        //dia, mês e ano
         day: dayObj.dayElement,
         month: dayObj.monthElement,
         year: dayObj.yearElement,
+        //informações do tempo
+        city: weather.nameElement,
+        temp: weather.tempElement,
+        description: weather.descriptionElement,
+        img: weather.imgElement,
     })
 })
 
