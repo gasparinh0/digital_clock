@@ -6,51 +6,93 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
-<body class="font-poppins bg-[#312e33]">
+<body id="bodyClass" class="font-poppins bg-[#2b4d50] text-white">
+    //Seção de tempo
     <div class="flex justify-between p-16">
         <div class="flex items-center">
-            <img src="/img/clima.png" alt="" width="45px" class="mr-2">
-            <p>tempo</p>
+            <img src="<%= img %>" alt="" width="65px" class="mr-2">
+            <div class="flex flex-col text-xl">
+                <span><%= city %>, <%= temp %></span>
+                <span class="italic -mt-2"><%= description %></span>
+            </div>
         </div>
         
-        <div class="flex items-center">
-            <img src="/img/simbolo-de-interface-da-roda-dentada-de-configuracao.png" alt="" width="45px" class="mr-2">
-            <p>configuracao</p>
+    //Seção de mudar cores
+        <div class="relative group">
+            <p class="cursor-pointer hover:text-blue-600">Mudar cores</p>
+            <div class="absolute hidden bg-white shadow-lg rounded-md border border-gray-300 py-2 px-4 mt-2 z-10 group-hover:block animate-fade">
+                <div class="flex items-center">
+                    <h2 class="text-black">Fundo</h2>
+                    <input type="color" id="colorPickerBackground" class="h-8 w-8 rounded-md border border-gray-300 focus:ring focus:ring-blue-400">
+                </div>
+                <div class="flex items-center">
+                    <h2 class="text-black">Texto</h2>
+                    <input type="color" id="colorPickerText" class="h-8 w-8 rounded-md border border-gray-300 focus:ring focus:ring-blue-400 mt-2">
+                </div>
+            </div>
         </div>
+
     </div>
 
+    //Relógio
     <div class="flex justify-center pt-64 flex-col items-center">
         <p>Dia <%= day %> de <%= month %> de <%= year %></p>
         <div class="flex text-9xl ">
-            <span id="hours"><%= hours %></span>
+            <span id="hours"></span>
             <span>:</span>
-            <span id="minutes"><%= minutes %></span>
+            <span id="minutes"></span>
             <span>:</span>
-            <span id="seconds"><%= seconds %></span>
+            <span id="seconds"></span>
         </div>
     </div>
     
 
 
-
+    //Script para o relógio e a função de mudar cores funcionar (como é algo que necessita ser atualizado, não é possível passar via rota)
     <script>
         function updateTime() {
+            //Definindo todas as variáveis para receber as horas, minutos e segundos
             var now = new Date();
             var hours = now.getHours();
             var minutes = now.getMinutes();
             var seconds = now.getSeconds();
-    
+            
+            //Mandando os dados para os elementos Span
             document.getElementById("hours").innerText = fixTime(hours);
             document.getElementById("minutes").innerText = fixTime(minutes);
             document.getElementById("seconds").innerText = fixTime(seconds);
         }
     
+        //Corrigindo os dados que são enviados pela função, para melhorar a visualização
         function fixTime(time) {
             return time < 10 ? "0" + time : time;
         }
     
+        //Chamando a função e dando um intervalo de 1 segundo de contagem
         updateTime();
         setInterval(updateTime, 1000);
+
+        //Definindo as variáveis para identificar os color pickers
+        const colorPickerBackground = document.getElementById('colorPickerBackground');
+        const colorPickerText = document.getElementById('colorPickerText');
+
+        //Definindo as variáveis para costumização
+        const backgroundCostumizable = document.getElementById('bodyClass');
+        const textCostumizable = document.querySelectorAll('#bodyClass span, #bodyClass p');
+
+        //Adicionando um evento que faça com que o a cor selecionada no input seja lida e substituida no elemento desejado
+        colorPickerBackground.addEventListener('input', function(event) {
+            const color = event.target.value;
+            backgroundCostumizable.style.backgroundColor = color;
+        });
+
+         //Adicionando um evento que faça com que o a cor selecionada no input seja lida e substituida no elemento desejado
+        colorPickerText.addEventListener('input', function(event) {
+        const color = event.target.value;
+        textCostumizable.forEach(element => {
+            element.style.color = color;
+        });
+    });
     </script>
 </body>
 </html>
