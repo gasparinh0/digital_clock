@@ -7,26 +7,24 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body id="bodyClass" class="font-poppins bg-[#2b4d50] text-white">
-    //Seção de tempo
-    <div class="flex justify-between p-16">
+    <div class="flex justify-between p-16 min-[300px]:pl-4 min-[700px]:pl-16">
         <div class="flex items-center">
             <img src="<%= img %>" alt="" width="65px" class="mr-2">
             <div class="flex flex-col text-xl">
                 <span><%= city %>, <%= temp %></span>
-                <span class="italic -mt-2"><%= description %></span>
+                <span class="italic -mt-1 opacity-80"><%= description %></span>
             </div>
         </div>
         
-    //Seção de mudar cores
         <div class="relative group">
-            <p class="cursor-pointer hover:text-blue-600">Mudar cores</p>
+            <p class="cursor-pointer hover:text-blue-600 bg-slate-400 p-3 rounded-xl">Mudar cores</p>
             <div class="absolute hidden bg-white shadow-lg rounded-md border border-gray-300 py-2 px-4 mt-2 z-10 group-hover:block animate-fade">
                 <div class="flex items-center">
-                    <h2 class="text-black">Fundo</h2>
+                    <h2 class="text-black pr-1">Fundo</h2>
                     <input type="color" id="colorPickerBackground" class="h-8 w-8 rounded-md border border-gray-300 focus:ring focus:ring-blue-400">
                 </div>
                 <div class="flex items-center">
-                    <h2 class="text-black">Texto</h2>
+                    <h2 class="text-black pr-3">Texto</h2>
                     <input type="color" id="colorPickerText" class="h-8 w-8 rounded-md border border-gray-300 focus:ring focus:ring-blue-400 mt-2">
                 </div>
             </div>
@@ -34,10 +32,9 @@
 
     </div>
 
-    //Relógio
-    <div class="flex justify-center pt-64 flex-col items-center">
+    <div class="flex justify-center pt-64 min-[300px]:pt-44 min-[700px]:pt-64 flex-col items-center">
         <p>Dia <%= day %> de <%= month %> de <%= year %></p>
-        <div class="flex text-9xl ">
+        <div class="flex text-9xl min-[300px]:text-7xl min-[700px]:text-9xl">
             <span id="hours"></span>
             <span>:</span>
             <span id="minutes"></span>
@@ -46,9 +43,6 @@
         </div>
     </div>
     
-
-
-    //Script para o relógio e a função de mudar cores funcionar (como é algo que necessita ser atualizado, não é possível passar via rota)
     <script>
         function updateTime() {
             //Definindo todas as variáveis para receber as horas, minutos e segundos

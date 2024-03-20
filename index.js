@@ -1,4 +1,5 @@
 //definindo dependencias do node e express
+const dot = require('dotenv').config()
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
@@ -47,7 +48,7 @@ function newDay() {
 newDay()
 
 //API de clima
-const key = "d99c13f054c406019f175a3bfa7f8d70"
+const key = process.env.APIWEATHER
 
 //Definindo variáveis que vão receber as informações
 let weather = {
