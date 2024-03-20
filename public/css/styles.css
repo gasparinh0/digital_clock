@@ -510,18 +510,6 @@ video {
 .justify-between {
   justify-content: space-between;
 }
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-.bg-red-50 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 242 242 / var(--tw-bg-opacity));
-}
-.bg-gray-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
-}
 .bg-\[\#312e33\] {
   --tw-bg-opacity: 1;
   background-color: rgb(49 46 51 / var(--tw-bg-opacity));
@@ -534,10 +522,6 @@ video {
 }
 .font-poppins {
   font-family: Poppins, sans-serif;
-}
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 .text-9xl {
   font-size: 8rem;
